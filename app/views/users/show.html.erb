@@ -13,19 +13,20 @@
   <%= link_to "Edit Profile", edit_user_path(@user), class: "button" %>
   <%= link_to "Change Password", edit_user_registration_path, class: "button"%>
 </div>  
-
-<script>
-  $(function(){
-    $("#invite_fb_friends").click(function(){
-      FB.init({
-        appId: '<%= ENV['FBAccessKeyId1'] %>', 
-        cookie: false,
-        status: true
-      });
-      FB.ui({ method: 'apprequests', message: '<%= current_user %> thinks you are really awesome'})
+<script src="/assets/jquery.min.js"></script>
+<script >
+$(function(){
+  $("#invite_fb_friends").click(function(){
+    FB.init({
+      appId: '<%= ENV['FBAccessKeyId1'] %>', 
+      cookie: false,
+      status: true
     });
+    FB.ui({ method: 'apprequests', message: '<%= current_user %> thinks you are really awesome'})
   });
+});
 </script>
+
 
 <div class="module">
   <% @user.groups.each do |group| %>
@@ -39,4 +40,4 @@
 
 
 <%= link_to "Create New Group", new_group_path, class: "button" %><br>
-<%= link_to image_tag("fb_invite.png"), "#", :id => "invite_fb_friends" %>
+<%= link_to image_tag("fb_invite.png"), '#', :id => "invite_fb_friends" %>
