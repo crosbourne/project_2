@@ -4,6 +4,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
+gem 'fog', '~> 1.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use postgresql as the database for Active Record
@@ -37,6 +38,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'seed_dump'
 end
 
 # Use ActiveModel has_secure_password

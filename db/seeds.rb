@@ -1,98 +1,73 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 User.delete_all
 Group.delete_all
 Grouping.delete_all
 Bill.delete_all
 BillType.delete_all
-Proportion.delete_all
+Share.delete_all
 
-# luke = User.create!(email: "luke@luke.com", password: "password", first_name: "Luke", last_name: "Grayland")
-# andres = User.create!(email: "andres@andres.com", password: "password", first_name: "Andres", last_name: "Idontknow")
-# neil = User.create!(email: "neil@neil.com", password: "password", first_name: "Neil", last_name: "Crosbourne")
+neil = User.create!([
+  {email: "neil@neil.com", password: "password", first_name: "Neil", last_name: nil, provider: nil, uid: nil, user_avatar: nil, id: 17, album_cover: nil, remote_user_avatar_url: "http://imageshack.com/a/img910/5674/LvpYQ2.jpg"} ])
 
-# gr1 = Group.create!(name: "House share", description: "A group for a house share of 3 people")
-# # gr2 = Group.create!(name: "House share 2", description: "A group for a flat share of 2 people")
+u1 = User.create!([
+  {email: "u1@u1.com", password: "password", first_name: "Bill", last_name: "u1l", provider: nil, uid: nil, user_avatar: nil, id: 14, remote_user_avatar_url: "http://imageshack.com/a/img910/8899/UeH7bI.png"} ])
 
-# gr1.users.push(luke, andres, neil)
+test = User.create!([
+  {email: "test@hotmail.com", password: "password", first_name: nil, last_name: nil, provider: nil, uid: nil, user_avatar: nil, id: 19} ])
 
-# inet = Bill.create!(name: "Internet", amount: 40, deadline: "2015.2.15")
-# inet_type = BillType.create!(name: "internet_bt")
-# inet_pr1 = Proportion.create!(percentage: 50)
-# inet_pr2 = Proportion.create!(percentage: 50)
+u2 = User.create!([
+  {email: "u2@u2.com", password: "password", first_name: "Sam", last_name: "u2l", provider: nil, uid: nil, user_avatar: nil, id: 15, remote_user_avatar_url: "http://imageshack.com/a/img540/2414/ogEPy2.jpg"} ])
 
-# inet_type.bills.push(inet)
-# inet_type.proportions.push(inet_pr1, inet_pr2)
-
-# tv = Bill.create!(name: "TV", amount: 24, deadline: "2015.2.15")
-# tv_type = BillType.create!(name: "tv_bt")
-# tv_pr1 = Proportion.create!(percentage: 25)
-# tv_pr2 = Proportion.create!(percentage: 25)
-# tv_pr3 = Proportion.create!(percentage: 25)
-# tv_pr4 = Proportion.create!(percentage: 25)
-
-# tv_type.bills.push(tv)
-# tv_type.proportions.push(tv_pr1, tv_pr2, tv_pr3, tv_pr4)
-
-#########################
-#### CREATE PARTY #######
-#########################
-# u1 = User.create!(email: "u1@u1.com", password: "password", first_name: "u1", last_name: "u1l")
-# u2 = User.create!(email: "u2@u2.com", password: "password", first_name: "u2", last_name: "u2l")
-# u3 = User.create!(email: "u3@u3.com", password: "password", first_name: "u3", last_name: "u3l")
-
-# party = Group.create!(name: "Party", description: "All night party")
-# party.users.push(u1, u2, u3)
-
-# party_drinks = Bill.create!(name: "Drinks", amount: 430, deadline: "2015.2.15")
-# party_fruits = Bill.create!(name: "Fruits", amount: 210, deadline: "2015.2.15")
-# party_girls = Bill.create!(name: "Girls", amount: 1230, deadline: "2015.2.15")
-# party_music = Bill.create!(name: "Music", amount: 880, deadline: "2015.2.15")
-
-# party_type = BillType.create!(name: "party")
-# party.bill_types.push(party_type)
-# party.bills.push(party_drinks, party_fruits, party_girls, party_music)
-# party_type.bills.push(party_drinks, party_fruits, party_girls, party_music)
-
-# Create and add bill types to users which involves in party
-# u1_party_bill_type = BillType.create(name: "u1_paty_bill_type")
-# u1.groups.find(party.id).bill_types.push(u1_party_bill_type)
-
-# u2_party_bill_type = BillType.create(name: "u2_paty_bill_type")
-# u2.groups.find(party.id).bill_types.push(u2_party_bill_type)
-
-# u3_party_bill_type = BillType.create(name: "u3_paty_bill_type")
-# u3.groups.find(party.id).bill_types.push(u3_party_bill_type)
-
-## Create percentage for users
-  #u1
-# u1_party_proportion = Proportion.create!(percentage: 33)
-#   #in both relations groupings and bill_types
-# u1.groupings.last.proportions.push(u1_party_proportion)
-# u1.groups.find(party.id).bill_types.find(u1_party_bill_type.id).proportions.push(u1_party_proportion)
-
-# #u2
-# u2_party_proportion = Proportion.create!(percentage: 28)
-#   #in both relations groupings and bill_types
-# u2.groupings.last.proportions.push(u2_party_proportion)
-# u2.groups.find(party.id).bill_types.find(u2_party_bill_type.id).proportions.push(u2_party_proportion)
-
-# #u3
-# u3_party_proportion = Proportion.create!(percentage: 15)
-#   #in both relations groupings and bill_types
-# u3.groupings.last.proportions.push(u3_party_proportion)
-# u3.groups.find(party.id).bill_types.find(u3_party_bill_type.id).proportions.push(u3_party_proportion)
+u3 = User.create!([
+  {email: "u3@u3.com", password: "password", first_name: "Tony", last_name: "u3l", provider: nil, uid: nil, user_avatar: nil, id: 16, remote_user_avatar_url: "http://imageshack.com/a/img538/7936/0IEVSX.jpg"} ])
 
 
 
-
-
-
-
-
+Bill.create!([
+  {name: "Drinks", amount: 430.0, deadline: "2015-02-15", bill_type_id: 13, group_id: 5},
+  {name: "Fruits", amount: 210.0, deadline: "2015-02-15", bill_type_id: 13, group_id: 5},
+  {name: "Girls", amount: 1230.0, deadline: "2015-02-15", bill_type_id: 13, group_id: 5},
+  {name: "Music", amount: 880.0, deadline: "2015-02-15", bill_type_id: 13, group_id: 5},
+  {name: "test 1", amount: 0.0, deadline: nil, bill_type_id: 17, group_id: 6},
+  {name: "Jack Danails", amount: 25.0, deadline: nil, bill_type_id: 19, group_id: 8},
+  {name: "Beer", amount: 100.0, deadline: "2015-01-23", bill_type_id: 21, group_id: 8},
+  {name: "Snacks", amount: 100.0, deadline: "2015-01-24", bill_type_id: 18, group_id: 6},
+  {name: "Rent", amount: 500.0, deadline: "2015-01-22", bill_type_id: 22, group_id: 7}
+])
+BillType.create!([
+  {name: "party", group_id: 5},
+  {name: "u1_paty_bill_type", group_id: 5},
+  {name: "u2_paty_bill_type", group_id: 5},
+  {name: "u3_paty_bill_type", group_id: 5},
+  {name: "test", group_id: 6},
+  {name: "Food", group_id: 6},
+  {name: "", group_id: 8},
+  {name: "", group_id: 8},
+  {name: "test", group_id: 8},
+  {name: "Rent", group_id: 7}
+])
+Group.create!([
+  {name: "Party", description: "All night party", total: nil},
+  {name: "Drinks", description: "drinks for party", total: nil},
+  {name: "Holiday", description: "trip to florida", total: nil},
+  {name: "Rent", description: "Flat Rent", total: nil}
+])
+Grouping.create!([
+  {user_id: 14, group_id: 5},
+  {user_id: 15, group_id: 5},
+  {user_id: 16, group_id: 5},
+  {user_id: 18, group_id: 6},
+  {user_id: 18, group_id: 7},
+  {user_id: 14, group_id: 8},
+  {user_id: 15, group_id: 8},
+  {user_id: 18, group_id: 8}
+])
+Share.create!([
+  {bill_type_id: 17, grouping_id: 16, percent: nil},
+  {bill_type_id: 19, grouping_id: 18, percent: 50},
+  {bill_type_id: 13, grouping_id: 13, percent: 50},
+  {bill_type_id: 13, grouping_id: 14, percent: 25},
+  {bill_type_id: 13, grouping_id: 15, percent: 25},
+  {bill_type_id: 21, grouping_id: 20, percent: 50},
+  {bill_type_id: 21, grouping_id: 18, percent: 25},
+  {bill_type_id: 21, grouping_id: 19, percent: 25}
+])
