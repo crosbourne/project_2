@@ -1,0 +1,7 @@
+<div class="module">
+  <h2>Edit Profile</h2>
+<%= form_for @user do |f| %>
+<%= render partial: 'form', locals: { f: f } %>
+<%= f.submit 'Edit Profile!' %>
+<% end %>
+</div>

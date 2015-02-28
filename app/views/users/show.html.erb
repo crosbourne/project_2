@@ -1,0 +1,43 @@
+<div class="module">
+  <div>
+    <h2>Hello <%= @user.first_name%></h2>
+  </div>
+  <div>
+    <% if @user.user_avatar.present? %>
+      <%= link_to image_tag(@user.user_avatar.thumb.url), @user.user_avatar.detail.url %>
+    <% else %>
+      <%= link_to image_tag("billshare_no_photo_small.jpg") %>
+    <% end %>
+ </div>
+ <div>
+  <%= link_to "Edit Profile", edit_user_path(@user), class: "button" %>
+  <%= link_to "Change Password", edit_user_registration_path, class: "button"%>
+</div>  
+<script src="/assets/jquery.min.js"></script>
+<script >
+$(function(){
+  $("#invite_fb_friends").click(function(){
+    FB.init({
+      appId: '<%= ENV['FBAccessKeyId1'] %>', 
+      cookie: false,
+      status: true
+    });
+    FB.ui({ method: 'apprequests', message: '<%= current_user %> thinks you are really awesome'})
+  });
+});
+</script>
+
+
+<div class="module">
+  <% @user.groups.each do |group| %>
+   <div class="bill">
+      <h2><%= link_to group.name, group_path(group) %></h2>
+      <%= link_to group.description, group_path(group)  %> <br>
+      <%= link_to "Edit", edit_group_path(group), class: "button" %>
+    </div>
+  <% end %>
+</div>
+
+
+<%= link_to "Create New Group", new_group_path, class: "button" %><br>
+<%= link_to image_tag("fb_invite.png"), '#', :id => "invite_fb_friends" %>

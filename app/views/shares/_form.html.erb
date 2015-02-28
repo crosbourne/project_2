@@ -1,0 +1,35 @@
+<% if @share && @share.errors.any? %>
+<div id="error_explanation">
+  <ul>
+    <% @share.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  </ul>
+  <% end %>
+</div>
+<% end %>
+
+<div class="module">
+  <%= form_for [@group, @bill_type, @share] do |f| %>
+    <h2>How would you like to split the <%= @bill_type.name %> bill?</h2>
+    <%= f.hidden_field :bill_type_id, value: params[:bill_type_id] %> 
+
+    <select name="share[grouping_id]" id="">
+      <% @group.users.each do |user| %>
+        <option value="<%= user.find_grouping(@group).id %>" ><%= user.first_name %></option>
+      <% end %>
+    </select>
+    
+    <%= f.number_field :percent, placeholder: "What percentage?" %>
+    <%= f.submit "Set The Split" %>
+    <br>
+  <% end %>
+  <% @group.users.each do |user| %>
+    <% if user.user_avatar.present? %>
+      <%= link_to image_tag(user.user_avatar.thumb.url), user.user_avatar.detail.url %> <%= user.find_share(@bill_type, user.find_grouping(@group)).try(:percent)  %>&#37;
+    <% else %>
+      <%= user.email %> <%= user.find_share(@bill_type, user.find_grouping(@group)).try(:percent)  %>&#37;
+    <% end %>
+  <% end %>
+  <br>
+  <%= link_to "Back to group", group_path(@group), class: "button" %>
+</div>
